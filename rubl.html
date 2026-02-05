@@ -1,0 +1,2502 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рубль-друг: Учим финансовую грамотность!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #388E3C;
+            --secondary: #FF9800;
+            --secondary-dark: #F57C00;
+            --accent: #2196F3;
+            --accent-dark: #1976D2;
+            --text: #333;
+            --background: #f5f7fa;
+            --card-bg: #fff;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        .main-header {
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .logo h1 {
+            font-family: 'Comic Neue', cursive;
+            font-size: 1.8rem;
+            color: white;
+            text-shadow: 2px 2px 0 var(--primary-dark);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            border-radius: 25px;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Главный экран */
+        .home-screen {
+            padding: 40px 0;
+        }
+
+        .hero-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #FFD54F, #FFB74D);
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(255, 179, 0, 0.3);
+        }
+
+        .hero-text h2 {
+            font-family: 'Comic Neue', cursive;
+            font-size: 2.2rem;
+            color: #D84315;
+            margin-bottom: 15px;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #5D4037;
+            max-width: 500px;
+        }
+
+        .hero-characters {
+            display: flex;
+            gap: 10px;
+        }
+
+        .character {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .character:nth-child(1) {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+        }
+        .character:nth-child(2) {
+            background: linear-gradient(135deg, #2196F3, #1565C0);
+            animation-delay: 0.5s;
+        }
+        .character:nth-child(3) {
+            background: linear-gradient(135deg, #FF9800, #EF6C00);
+            animation-delay: 1s;
+        }
+
+        /* Модули */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .module-card {
+            background: var(--card-bg);
+            border-radius: 25px;
+            padding: 30px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s;
+            cursor: pointer;
+            border: 5px solid transparent;
+        }
+
+        .module-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .module-card.learning {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+        }
+        .module-card.cartoons {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+        }
+        .module-card.games {
+            border-color: var(--secondary);
+            background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .bubble {
+            background-color: var(--secondary);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 1.2rem;
+            margin-top: 10px;
+            box-shadow: 0 4px 0 var(--secondary-dark);
+        }
+
+        /* Обучение - главный экран */
+        .learning-screen {
+            padding: 30px 0;
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .back-button:hover {
+            background: var(--primary-dark);
+            transform: translateX(-5px);
+        }
+
+        .page-header h2 {
+            font-family: 'Comic Neue', cursive;
+            font-size: 2rem;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .progress {
+            background: var(--accent);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        /* Сетка уроков */
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 3px solid transparent;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .lesson-card.completed {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+        }
+
+        .lesson-card.current {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+            animation: pulse 2s infinite;
+        }
+
+        .lesson-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .lesson-card.completed .lesson-icon {
+            background: var(--primary);
+        }
+
+        .lesson-card.current .lesson-icon {
+            background: var(--accent);
+        }
+
+        .lesson-number {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        /* Страница урока */
+        .lesson-page {
+            padding: 30px 0;
+        }
+
+        .lesson-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .lesson-title {
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            font-size: 2rem;
+            font-family: 'Comic Neue', cursive;
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 15px;
+        }
+
+        .lesson-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin: 25px 0;
+        }
+
+        .money-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .money-item {
+            background: linear-gradient(135deg, #FFE082, #FFD54F);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .money-item:hover {
+            transform: scale(1.05);
+        }
+
+        .exercise-section {
+            background: #E3F2FD;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 40px;
+            border: 3px solid var(--accent);
+        }
+
+        .exercise-title {
+            color: var(--accent-dark);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .option-btn {
+            padding: 15px;
+            background: white;
+            border: 2px solid var(--accent);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .option-btn:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .option-btn.selected {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+        }
+
+        .check-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .check-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+        }
+
+        .result-message {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: none;
+        }
+
+        .result-message.success {
+            background: #E8F5E9;
+            color: #2E7D32;
+            border: 2px solid #4CAF50;
+            display: block;
+        }
+
+        .result-message.error {
+            background: #FFEBEE;
+            color: #C62828;
+            border: 2px solid #F44336;
+            display: block;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .nav-btn {
+            padding: 15px 30px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+        }
+
+        .nav-btn.next {
+            background: var(--accent);
+        }
+
+        .nav-btn.next:hover {
+            background: var(--accent-dark);
+            box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+        }
+
+        /* Сертификат */
+        .certificate-screen {
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .certificate {
+            background: linear-gradient(135deg, #FFF9C4, #FFF59D);
+            border: 20px solid #FFD54F;
+            border-radius: 30px;
+            padding: 50px;
+            margin: 30px auto;
+            max-width: 800px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .certificate::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="50" y="50" font-size="90" fill="%23FFECB3" opacity="0.3" text-anchor="middle" dominant-baseline="central">₽</text></svg>');
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .certificate-title {
+            font-family: 'Comic Neue', cursive;
+            font-size: 3.5rem;
+            color: #D84315;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0 #FFCC80;
+        }
+
+        .certificate-text {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            margin: 25px 0;
+            color: #5D4037;
+        }
+
+        .student-name {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .certificate-stamp {
+            font-size: 5rem;
+            margin: 30px 0;
+            animation: bounce 2s infinite;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .download-btn:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(255, 152, 0, 0.3);
+        }
+
+        /* Мультфильмы */
+        .cartoons-screen {
+            padding: 30px 0;
+        }
+
+        .cartoons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .cartoon-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .cartoon-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .cartoon-thumbnail {
+            height: 180px;
+            background: linear-gradient(135deg, #FFCDD2, #F8BBD0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .cartoon-info {
+            padding: 20px;
+        }
+
+        .cartoon-info h3 {
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .cartoon-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .play-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .play-button:hover {
+            background: var(--accent-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Игры */
+        .games-screen {
+            padding: 30px 0;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .game-icon {
+            font-size: 4rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .game-difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #E8F5E9;
+            color: var(--primary);
+            border-radius: 15px;
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
+
+        /* Общие стили для всех экранов игр */
+        .game-page {
+            padding: 30px 0;
+        }
+
+        .game-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Анимации */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Утилиты */
+        .hidden {
+            display: none !important;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .main-nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+                padding: 20px;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            .main-nav.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .main-nav a {
+                padding: 15px;
+                justify-content: center;
+                border-radius: 0;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            
+            .modules-grid,
+            .lessons-grid,
+            .cartoons-grid,
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .lesson-content {
+                padding: 25px;
+            }
+            
+            .certificate {
+                padding: 30px;
+                margin: 20px;
+            }
+            
+            .certificate-title {
+                font-size: 2.5rem;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h2 {
+                font-size: 1.8rem;
+            }
+            
+            .character {
+                width: 80px;
+                height: 80px;
+                font-size: 1.8rem;
+            }
+            
+            .lesson-title {
+                font-size: 1.6rem;
+            }
+            
+            .certificate-title {
+                font-size: 2rem;
+            }
+            
+            .student-name {
+                font-size: 1.8rem;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">₽</div>
+                    <h1>Рубль-друг</h1>
+                </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav class="main-nav" id="mainNav">
+                    <ul>
+                        <li><a href="#" onclick="showScreen('home')" class="active"><i class="fas fa-home"></i> Главная</a></li>
+                        <li><a href="#" onclick="showScreen('learning')"><i class="fas fa-book"></i> Обучение</a></li>
+                        <li><a href="#" onclick="showScreen('cartoons')"><i class="fas fa-film"></i> Мультфильмы</a></li>
+                        <li><a href="#" onclick="showScreen('games')"><i class="fas fa-gamepad"></i> Игры</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Главный экран -->
+    <main id="home" class="home-screen">
+        <div class="container fade-in">
+            <div class="hero-section">
+                <div class="hero-text">
+                    <h2>Привет, друг! Давай учиться с деньгами!</h2>
+                    <p>Вместе с малышами-рублями мы узнаем, что такое деньги, как их копить и тратить с умом!</p>
+                </div>
+                <div class="hero-characters">
+                    <div class="character">₽</div>
+                    <div class="character">1р</div>
+                    <div class="character">10р</div>
+                </div>
+            </div>
+
+            <div class="modules-grid">
+                <div class="module-card learning" onclick="showScreen('learning')">
+                    <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Учимся с Рублём</h3>
+                    <p>5 весёлых уроков про деньги</p>
+                    <div class="bubble">Начнем!</div>
+                </div>
+
+                <div class="module-card cartoons" onclick="showScreen('cartoons')">
+                    <div class="card-icon"><i class="fas fa-film"></i></div>
+                    <h3>Сказки про денежки</h3>
+                    <p>5 интересных мультиков</p>
+                    <div class="bubble">Смотреть!</div>
+                </div>
+
+                <div class="module-card games" onclick="showScreen('games')">
+                    <div class="card-icon"><i class="fas fa-gamepad"></i></div>
+                    <h3>Играем с Копеечкой</h3>
+                    <p>5 игр и заданий</p>
+                    <div class="bubble">Играть!</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Экран обучения (список уроков) -->
+    <div id="learning" class="learning-screen hidden">
+        <div class="container fade-in">
+            <div class="page-header">
+                <button class="back-button" onclick="showScreen('home')">
+                    <i class="fas fa-arrow-left"></i> Назад
+                </button>
+                <h2><i class="fas fa-book"></i> Учимся с Рублём</h2>
+                <div class="progress" id="progressText">Урок 1 из 5</div>
+            </div>
+
+            <div class="lessons-grid" id="lessonsGrid">
+                <!-- Уроки будут добавлены через JavaScript -->
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="download-btn" onclick="showCertificate()" id="certificateBtn" style="display: none;">
+                    <i class="fas fa-award"></i> Получить сертификат
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Страница урока -->
+    <div id="lesson" class="lesson-page hidden">
+        <div class="container fade-in">
+            <div class="page-header">
+                <button class="back-button" onclick="showScreen('learning')">
+                    <i class="fas fa-arrow-left"></i> К урокам
+                </button>
+                <h2><i class="fas fa-graduation-cap"></i> Урок <span id="lessonNumber">1</span></h2>
+                <div class="progress" id="lessonProgress">1 из 5</div>
+            </div>
+
+            <div class="lesson-content">
+                <h1 class="lesson-title" id="lessonTitle">Название урока</h1>
+                
+                <div class="lesson-text" id="lessonText">
+                    <!-- Содержание урока будет загружено через JavaScript -->
+                </div>
+
+                <div class="exercise-section" id="exerciseSection">
+                    <h2 class="exercise-title">Проверь себя!</h2>
+                    <div id="exerciseContent">
+                        <!-- Упражнение будет загружено через JavaScript -->
+                    </div>
+                    
+                    <button class="check-button" onclick="checkExercise()" id="checkBtn">
+                        Проверить ответ
+                    </button>
+                    
+                    <div class="result-message" id="resultMessage"></div>
+                </div>
+
+                <div class="navigation-buttons">
+                    <button class="nav-btn" onclick="prevLesson()" id="prevBtn">
+                        <i class="fas fa-arrow-left"></i> Предыдущий урок
+                    </button>
+                    <button class="nav-btn next" onclick="nextLesson()" id="nextBtn">
+                        Следующий урок <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Сертификат -->
+    <div id="certificate" class="certificate-screen hidden">
+        <div class="container fade-in">
+            <div class="page-header">
+                <button class="back-button" onclick="showScreen('learning')">
+                    <i class="fas fa-arrow-left"></i> К урокам
+                </button>
+                <h2><i class="fas fa-award"></i> Мой сертификат</h2>
+            </div>
+
+            <div class="certificate">
+                <h1 class="certificate-title">СЕРТИФИКАТ</h1>
+                
+                <div class="certificate-text">
+                    Настоящий сертификат подтверждает, что
+                </div>
+                
+                <div class="student-name" id="studentName">ЮНЫЙ ФИНАНСИСТ</div>
+                
+                <div class="certificate-text">
+                    успешно прошёл курс финансовой грамотности<br>
+                    "Рубль-друг" и освоил основы управления деньгами
+                </div>
+                
+                <div class="certificate-stamp">🏆</div>
+                
+                <div class="certificate-text">
+                    <strong>Программа курса:</strong><br>
+                    1. Что такое деньги<br>
+                    2. Монеты и купюры<br>
+                    3. Счет до 100<br>
+                    4. Покупки в магазине<br>
+                    5. Как копить деньги
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <p>Дата: <span id="certificateDate"></span></p>
+                </div>
+            </div>
+
+            <button class="download-btn" onclick="downloadCertificate()">
+                <i class="fas fa-download"></i> Скачать сертификат
+            </button>
+        </div>
+    </div>
+
+    <!-- Мультфильмы -->
+    <div id="cartoons" class="cartoons-screen hidden">
+        <div class="container fade-in">
+            <div class="page-header">
+                <button class="back-button" onclick="showScreen('home')">
+                    <i class="fas fa-arrow-left"></i> Назад
+                </button>
+                <h2><i class="fas fa-film"></i> Сказки про денежки</h2>
+            </div>
+
+            <div class="cartoons-grid">
+                <div class="cartoon-card">
+                    <div class="cartoon-thumbnail" style="background: linear-gradient(135deg, #FFCDD2, #F8BBD0);">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <div class="cartoon-info">
+                        <h3>Как Рублик научился копить</h3>
+                        <p>История о маленьком Рублике</p>
+                        <button class="play-button" onclick="playCartoon(1)">
+                            <i class="fas fa-play"></i> Смотреть
+                        </button>
+                    </div>
+                </div>
+
+                <div class="cartoon-card">
+                    <div class="cartoon-thumbnail" style="background: linear-gradient(135deg, #C8E6C9, #A5D6A7);">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="cartoon-info">
+                        <h3>Поход в магазин</h3>
+                        <p>Как правильно делать покупки</p>
+                        <button class="play-button" onclick="playCartoon(2)">
+                            <i class="fas fa-play"></i> Смотреть
+                        </button>
+                    </div>
+                </div>
+
+                <div class="cartoon-card">
+                    <div class="cartoon-thumbnail" style="background: linear-gradient(135deg, #BBDEFB, #90CAF9);">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="cartoon-info">
+                        <h3>Секрет подарков</h3>
+                        <p>Чем подарок отличается от покупки</p>
+                        <button class="play-button" onclick="playCartoon(3)">
+                            <i class="fas fa-play"></i> Смотреть
+                        </button>
+                    </div>
+                </div>
+
+                <div class="cartoon-card">
+                    <div class="cartoon-thumbnail" style="background: linear-gradient(135deg, #FFF9C4, #FFF59D);">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="cartoon-info">
+                        <h3>Где живут деньги?</h3>
+                        <p>Путешествие в банк</p>
+                        <button class="play-button" onclick="playCartoon(4)">
+                            <i class="fas fa-play"></i> Смотреть
+                        </button>
+                    </div>
+                </div>
+
+                <div class="cartoon-card">
+                    <div class="cartoon-thumbnail" style="background: linear-gradient(135deg, #D1C4E9, #B39DDB);">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="cartoon-info">
+                        <h3>Приключения Копеечки</h3>
+                        <p>Маленькая монетка в большом мире</p>
+                        <button class="play-button" onclick="playCartoon(5)">
+                            <i class="fas fa-play"></i> Смотреть
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Игры -->
+    <div id="games" class="games-screen hidden">
+        <div class="container fade-in">
+            <div class="page-header">
+                <button class="back-button" onclick="showScreen('home')">
+                    <i class="fas fa-arrow-left"></i> Назад
+                </button>
+                <h2><i class="fas fa-gamepad"></i> Играем с Копеечкой</h2>
+            </div>
+
+            <div class="games-grid">
+                <div class="game-card" onclick="startGame('icecream')">
+                    <div class="game-icon"><i class="fas fa-ice-cream"></i></div>
+                    <h3>Купи мороженое</h3>
+                    <p>Выбери вкус и собери нужную сумму</p>
+                    <div class="game-difficulty">Легко</div>
+                </div>
+
+                <div class="game-card" onclick="startGame('wallet')">
+                    <div class="game-icon"><i class="fas fa-wallet"></i></div>
+                    <h3>Собери кошелёк</h3>
+                    <p>Сложи нужную сумму из монет</p>
+                    <div class="game-difficulty">Средне</div>
+                </div>
+
+                <div class="game-card" onclick="startGame('toy')">
+                    <div class="game-icon"><i class="fas fa-robot"></i></div>
+                    <h3>Выбери игрушку</h3>
+                    <p>Купи игрушку на свою сумму</p>
+                    <div class="game-difficulty">Сложно</div>
+                </div>
+
+                <div class="game-card" onclick="startGame('story')">
+                    <div class="game-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>История про Петю</h3>
+                    <p>Помоги Пете потратить деньги</p>
+                    <div class="game-difficulty">Легко</div>
+                </div>
+
+                <div class="game-card" onclick="startGame('treasure')">
+                    <div class="game-icon"><i class="fas fa-treasure-chest"></i></div>
+                    <h3>Найди клад</h3>
+                    <p>Ищи спрятанные монеты</p>
+                    <div class="game-difficulty">Средне</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ИГРА 1: Купи мороженое -->
+    <div id="gameIcecream" class="game-page hidden">
+        <div class="container fade-in">
+            <div class="page-header">
+                <button class="back-button" onclick="showScreen('games')">
+                    <i class="fas fa-arrow-left"></i> К играм
+                </button>
+                <h2><i class="fas fa-ice-cream"></i> Купи мороженое</h2>
+            </div>
+
+            <div class="game-content">
+                <div class="exercise-section">
+                    <p><strong>Задача:</strong> Выбери мороженое и собери нужную сумму монет!</p>
+                    
+                    <h3 class="exercise-title">1. Выбери мороженое:</h3>
+                    <div class="options-grid">
+                        <div class="option-btn" onclick="selectIceCream('Ванильное', 25)">
+                            <div style="font-size: 2rem; margin-bottom: 10px;">🍨</div>
+                            <strong>Ванильное</strong><br>
+                            25 рублей
+                        </div>
+                        <div class="option-btn" onclick="selectIceCream('Шоколадное', 30)">
+                            <div style="font-size: 2rem; margin-bottom: 10px;">🍫</div>
+                            <strong>Шоколадное</strong><br>
+                            30 рублей
+                        </div>
+                        <div class="option-btn" onclick="selectIceCream('Клубничное', 35)">
+                            <div style="font-size: 2rem; margin-bottom: 10px;">🍓</div>
+                            <strong>Клубничное</strong><br>
+                            35 рублей
+                        </div>
+                    </div>
+
+                    <h3 class="exercise-title">2. Собери нужную сумму:</h3>
+                    <div class="options-grid" id="icecreamCoins">
+                        <div class="option-btn" onclick="selectIceCreamCoin(1)">1 рубль</div>
+                        <div class="option-btn" onclick="selectIceCreamCoin(2)">2 рубля</div>
+                        <div class="option-btn" onclick="selectIceCreamCoin(5)">5 рублей</div>
+                        <div class="option-btn" onclick="selectIceCreamCoin(10)">10 рублей</div>
+                    </div>
+
+                    <div style="background: #FFF3E0; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                        <p><strong>Выбрано мороженое:</strong> <span id="selectedIceCreamName">Не выбрано</span></p>
+                        <p><strong>Цена:</strong> <span id="selectedIceCreamPrice">0</span> рублей</p>
+                        <p><strong>Твои монеты:</strong> <span id="selectedCoinsSum">0</span> рублей</p>
+                        <p><strong>Сдача:</strong> <span id="iceCreamChange">0</span> рублей</p>
+                    </div>
+
+                    <button class="check-button" onclick="buyIceCream()" id="icecreamButton" disabled>
+                        Купить мороженое!
+                    </button>
+
+                    <div class="result-message" id="icecreamResult"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ИГРА 2: Собери кошелёк -->
+    <div id="gameWallet" class="game-page hidden">
+        <div class="container fade-in">
+            <div class="page-header">
+                <button class="back-button" onclick="showScreen('games')">
+                    <i class="fas fa-arrow-left"></i> К играм
+                </button>
+                <h2><i class="fas fa-wallet"></i> Собери кошелёк</h2>
+            </div>
+
+            <div class="game-content">
+                <div class="exercise-section">
+                    <p><strong>Задача:</strong> Собери нужную сумму, перетаскивая монеты в кошелёк!</p>
+                    
+                    <div style="background: #FFF3E0; padding: 20px; border-radius: 15px; margin: 20px 0; text-align: center;">
+                        <h3 style="color: var(--primary-dark);">Собери: <span id="walletTarget">50</span> рублей</h3>
+                    </div>
+
+                    <h3 class="exercise-title">Доступные монеты:</h3>
+                    <div class="options-grid" id="availableCoins">
+                        <!-- Монеты будут добавлены через JS -->
+                    </div>
+
+                    <h3 class="exercise-title">Твой кошелёк:</h3>
+                    <div style="min-height: 200px; border: 3px dashed var(--accent); border-radius: 20px; margin: 20px 0; padding: 20px; background: #E3F2FD; text-align: center;" id="walletArea">
+                        <p style="color: #666;">Перетащи монеты сюда</p>
+                    </div>
+
+                    <div style="background: #FFF3E0; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                        <p><strong>В кошельке:</strong> <span id="walletTotal">0</span> рублей</p>
+                        <p><strong>Осталось собрать:</strong> <span id="walletRemaining">50</span> рублей</p>
+                    </div>
+
+                    <button class="check-button" onclick="checkWallet()" id="walletButton" disabled>
+                        Проверить
+                    </button>
+
+                    <div class="result-message" id="walletResult"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ИГРА 3: Выбери игрушку -->
+    <div id="gameToy" class="game-page hidden">
+        <div class="container fade-in">
+            <div class="page-header">
+                <button class="back-button" onclick="showScreen('games')">
+                    <i class="fas fa-arrow-left"></i> К играм
+                </button>
+                <h2><i class="fas fa-robot"></i> Выбери игрушку</h2>
+            </div>
+
+            <div class="game-content">
+                <div class="exercise-section">
+                    <p><strong>Задача:</strong> У тебя есть бюджет. Выбери лучшую игрушку, которую можешь купить!</p>
+                    
+                    <div style="background: #FFF3E0; padding: 20px; border-radius: 15px; margin: 20px 0; text-align: center;">
+                        <h3 style="color: var(--primary-dark);">Твой бюджет: <span id="budgetAmount">100</span> рублей</h3>
+                    </div>
+
+                    <h3 class="exercise-title">Выбери игрушку:</h3>
+                    <div class="options-grid" id="toysGrid">
+                        <!-- Игрушки будут добавлены через JS -->
+                    </div>
+
+                    <div style="background: #FFF3E0; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                        <p><strong>Выбрана игрушка:</strong> <span id="selectedToyName">Не выбрана</span></p>
+                        <p><strong>Цена:</strong> <span id="selectedToyPrice">0</span> рублей</p>
+                        <p><strong>Останется денег:</strong> <span id="toyRemainingBudget">100</span> рублей</p>
+                    </div>
+
+                    <button class="check-button" onclick="buyToy()" id="toyButton" disabled>
+                        Купить игрушку!
+                    </button>
+
+                    <div class="result-message" id="toyResult"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ИГРА 4: История про Петю -->
+    <div id="gameStory" class="game-page hidden">
+        <div class="container fade-in">
+            <div class="page-header">
+                <button class="back-button" onclick="showScreen('games')">
+                    <i class="fas fa-arrow-left"></i> К играм
+                </button>
+                <h2><i class="fas fa-book-open"></i> История про Петю</h2>
+            </div>
+
+            <div class="game-content">
+                <div class="exercise-section">
+                    <p><strong>Задача:</strong> Прочитай историю и ответь на вопросы!</p>
+                    
+                    <div style="background: #FFFDE7; border-radius: 20px; padding: 30px; margin: 20px 0; border-left: 10px solid var(--secondary);">
+                        <h3 style="color: var(--primary-dark); margin-bottom: 15px;">Петя и его первый рубль</h3>
+                        <p>Жил-был мальчик Петя. Ему было 5 лет. Однажды бабушка подарила Пете его первый рубль.</p>
+                        <p>"Что же мне купить на этот рубль?" - думал Петя.</p>
+                        <p>Друг Пети, Ваня, сказал: "Давай купим мороженое! Одно мороженое стоит 50 рублей."</p>
+                        <p>Но Петя знал, что его рубля не хватит на мороженое. Тогда он увидел в магазине наклейки за 1 рубль.</p>
+                        <p>"Я могу купить одну наклейку на свой рубль!" - обрадовался Петя.</p>
+                    </div>
+
+                    <div id="storyQuestions">
+                        <!-- Вопросы будут добавлены через JS -->
+                    </div>
+
+                    <button class="check-button" onclick="checkStory()" id="storyButton">
+                        Проверить ответы
+                    </button>
+
+                    <div class="result-message" id="storyResult"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ИГРА 5: Найди клад -->
+    <div id="gameTreasure" class="game-page hidden">
+        <div class="container fade-in">
+            <div class="page-header">
+                <button class="back-button" onclick="showScreen('games')">
+                    <i class="fas fa-arrow-left"></i> К играм
+                </button>
+                <h2><i class="fas fa-treasure-chest"></i> Найди клад</h2>
+            </div>
+
+            <div class="game-content">
+                <div class="exercise-section">
+                    <p><strong>Задача:</strong> Найди все спрятанные монеты на карте сокровищ!</p>
+                    
+                    <div style="background: #8D6E63; border-radius: 20px; padding: 30px; margin: 30px 0; position: relative;">
+                        <div class="map-grid" id="treasureMap" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; max-width: 500px; margin: 0 auto;">
+                            <!-- Карта будет создана через JS -->
+                        </div>
+                    </div>
+
+                    <div style="background: #FFF3E0; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                        <p><strong>Найдено монет:</strong> <span id="treasureFound">0</span> из <span id="totalTreasures">5</span></p>
+                        <p><strong>Общая стоимость:</strong> <span id="treasureSum">0</span> рублей</p>
+                        <p><strong>Попыток:</strong> <span id="treasureAttempts">0</span></p>
+                    </div>
+
+                    <button class="check-button" onclick="finishTreasure()" id="treasureButton" disabled>
+                        Закончить поиск
+                    </button>
+
+                    <div class="result-message" id="treasureResult"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== ДАННЫЕ УРОКОВ =====
+        const lessons = [
+            {
+                id: 1,
+                title: "Что такое деньги?",
+                icon: "fa-money-bill-wave",
+                content: `
+                    <div class="lesson-text">
+                        <p><strong>Деньги</strong> - это специальные бумажки и монетки, на которые можно купить всё, что нужно: еду, игрушки, одежду.</p>
+                        
+                        <div style="text-align: center; margin: 30px 0;">
+                            <div style="font-size: 4rem; color: var(--primary);">💰</div>
+                            <p><em>Деньги бывают разные</em></p>
+                        </div>
+                        
+                        <p>Давным-давно люди менялись вещами: меняли рыбу на хлеб, шкуры на посуду. Но это было неудобно!</p>
+                        
+                        <p>Потом придумали деньги. Теперь мы можем купить всё, что нужно, в магазине.</p>
+                        
+                        <div class="money-showcase">
+                            <div class="money-item">
+                                <div style="font-size: 3rem;">🪙</div>
+                                <p><strong>Монеты</strong></p>
+                                <p>Маленькие круглые деньги из металла</p>
+                            </div>
+                            <div class="money-item">
+                                <div style="font-size: 3rem;">💵</div>
+                                <p><strong>Купюры</strong></p>
+                                <p>Бумажные деньги разного цвета</p>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                exercise: {
+                    question: "Что можно купить на деньги?",
+                    options: [
+                        { text: "Только игрушки", correct: false },
+                        { text: "Всё что нужно: еду, одежду, игрушки", correct: true },
+                        { text: "Ничего нельзя купить", correct: false }
+                    ]
+                }
+            },
+            {
+                id: 2,
+                title: "Монеты и купюры",
+                icon: "fa-coins",
+                content: `
+                    <div class="lesson-text">
+                        <p>В России есть разные деньги. Давай познакомимся с ними!</p>
+                        
+                        <div class="money-showcase">
+                            <div class="money-item">
+                                <div style="font-size: 3rem; color: #FFD700;">🪙</div>
+                                <p><strong>1 рубль</strong></p>
+                                <p>Самая маленькая монета</p>
+                            </div>
+                            <div class="money-item">
+                                <div style="font-size: 3rem; color: #C0C0C0;">🪙</div>
+                                <p><strong>5 рублей</strong></p>
+                                <p>Серебристая монета</p>
+                            </div>
+                            <div class="money-item">
+                                <div style="font-size: 3rem; color: #4CAF50;">💵</div>
+                                <p><strong>10 рублей</strong></p>
+                                <p>Зелёная купюра</p>
+                            </div>
+                            <div class="money-item">
+                                <div style="font-size: 3rem; color: #2196F3;">💵</div>
+                                <p><strong>50 рублей</strong></p>
+                                <p>Голубая купюра</p>
+                            </div>
+                        </div>
+                        
+                        <p><strong>Монеты</strong> делают из металла. Они тяжёлые и звонкие!</p>
+                        <p><strong>Купюры</strong> печатают на бумаге. Они лёгкие и шуршат.</p>
+                        
+                        <div style="background: #E8F5E9; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                            <h4>Запомни:</h4>
+                            <p>1 рубль = 100 копеек<br>
+                            10 рублей = десять раз по 1 рублю<br>
+                            50 рублей = пять раз по 10 рублей</p>
+                        </div>
+                    </div>
+                `,
+                exercise: {
+                    question: "Из чего делают монеты?",
+                    options: [
+                        { text: "Из бумаги", correct: false },
+                        { text: "Из металла", correct: true },
+                        { text: "Из пластилина", correct: false }
+                    ]
+                }
+            },
+            {
+                id: 3,
+                title: "Считаем до 100",
+                icon: "fa-calculator",
+                content: `
+                    <div class="lesson-text">
+                        <p>Чтобы покупать в магазине, нужно уметь считать деньги. Давай научимся!</p>
+                        
+                        <div style="text-align: center; margin: 30px 0;">
+                            <div style="font-size: 4rem; color: var(--primary);">🔢</div>
+                            <p><em>Учимся считать деньги</em></p>
+                        </div>
+                        
+                        <h4>Счёт десятками:</h4>
+                        <p>10, 20, 30, 40, 50, 60, 70, 80, 90, 100!</p>
+                        
+                        <div class="money-showcase">
+                            <div class="money-item">
+                                <p><strong>10 рублей</strong></p>
+                                <p>Одна купюра</p>
+                            </div>
+                            <div class="money-item">
+                                <p><strong>20 рублей</strong></p>
+                                <p>Две купюры по 10</p>
+                            </div>
+                            <div class="money-item">
+                                <p><strong>50 рублей</strong></p>
+                                <p>Пять купюр по 10</p>
+                            </div>
+                            <div class="money-item">
+                                <p><strong>100 рублей</strong></p>
+                                <p>Десять купюр по 10</p>
+                            </div>
+                        </div>
+                        
+                        <p>Давай потренируемся:</p>
+                        <div style="background: #FFF3E0; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                            <p>У тебя есть 2 монеты по 10 рублей. Сколько всего?</p>
+                            <p><strong>Правильно: 20 рублей!</strong></p>
+                            <p>А если добавить ещё 3 монеты по 10 рублей?</p>
+                            <p><strong>Получится 50 рублей!</strong></p>
+                        </div>
+                    </div>
+                `,
+                exercise: {
+                    question: "Сколько будет 3 монеты по 10 рублей?",
+                    options: [
+                        { text: "30 рублей", correct: true },
+                        { text: "13 рублей", correct: false },
+                        { text: "300 рублей", correct: false }
+                    ]
+                }
+            },
+            {
+                id: 4,
+                title: "Покупки в магазине",
+                icon: "fa-shopping-cart",
+                content: `
+                    <div class="lesson-text">
+                        <p>Когда идёшь в магазин, нужно знать несколько правил:</p>
+                        
+                        <div style="text-align: center; margin: 30px 0;">
+                            <div style="font-size: 4rem; color: var(--primary);">🛒</div>
+                            <p><em>Учимся делать покупки</em></p>
+                        </div>
+                        
+                        <h4>Правила покупок:</h4>
+                        <div style="background: #E8F5E9; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                            <p>1. <strong>Проверь цену</strong> - сколько стоит товар?</p>
+                            <p>2. <strong>Посчитай деньги</strong> - хватит ли у тебя?</p>
+                            <p>3. <strong>Возьми сдачу</strong> - если дал больше денег</p>
+                            <p>4. <strong>Сохрани чек</strong> - это твоя расписка</p>
+                        </div>
+                        
+                        <h4>Пример:</h4>
+                        <p>Мороженое стоит 30 рублей. У тебя есть 50 рублей.</p>
+                        <p>Ты покупаешь мороженое, отдаёшь 50 рублей.</p>
+                        <p>Тебе должны вернуть <strong>20 рублей сдачи</strong> (50 - 30 = 20).</p>
+                        
+                        <div class="money-showcase">
+                            <div class="money-item">
+                                <div style="font-size: 3rem;">🍦</div>
+                                <p><strong>Мороженое</strong></p>
+                                <p>30 рублей</p>
+                            </div>
+                            <div class="money-item">
+                                <div style="font-size: 3rem;">💵</div>
+                                <p><strong>У тебя есть</strong></p>
+                                <p>50 рублей</p>
+                            </div>
+                            <div class="money-item">
+                                <div style="font-size: 3rem;">🪙</div>
+                                <p><strong>Сдача</strong></p>
+                                <p>20 рублей</p>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                exercise: {
+                    question: "Книга стоит 40 рублей. Ты дал 50 рублей. Сколько сдачи получишь?",
+                    options: [
+                        { text: "10 рублей", correct: true },
+                        { text: "90 рублей", correct: false },
+                        { text: "Без сдачи", correct: false }
+                    ]
+                }
+            },
+            {
+                id: 5,
+                title: "Как копить деньги",
+                icon: "fa-piggy-bank",
+                content: `
+                    <div class="lesson-text">
+                        <p>Иногда нужно отложить деньги, чтобы купить что-то важное. Это называется <strong>копить</strong>.</p>
+                        
+                        <div style="text-align: center; margin: 30px 0;">
+                            <div style="font-size: 4rem; color: var(--primary);">🐷</div>
+                            <p><em>Копилка - друг денег</em></p>
+                        </div>
+                        
+                        <h4>Зачем копить?</h4>
+                        <ul style="margin: 20px; padding-left: 20px;">
+                            <li>Чтобы купить дорогую игрушку</li>
+                            <li>Чтобы сделать подарок маме</li>
+                            <li>На случай, если срочно понадобится</li>
+                        </ul>
+                        
+                        <h4>Как правильно копить?</h4>
+                        <div style="background: #FFF3E0; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                            <p>1. <strong>Поставь цель</strong> - что хочешь купить?</p>
+                            <p>2. <strong>Узнай цену</strong> - сколько нужно денег?</p>
+                            <p>3. <strong>Откладывай понемногу</strong> - 10-20 рублей в день</p>
+                            <p>4. <strong>Не трать на сладости</strong> - помни о цели!</p>
+                        </div>
+                        
+                        <h4>Пример копилки:</h4>
+                        <div class="money-showcase">
+                            <div class="money-item">
+                                <p><strong>День 1</strong></p>
+                                <p>10 рублей</p>
+                            </div>
+                            <div class="money-item">
+                                <p><strong>День 2</strong></p>
+                                <p>20 рублей (всего 30)</p>
+                            </div>
+                            <div class="money-item">
+                                <p><strong>День 3</strong></p>
+                                <p>10 рублей (всего 40)</p>
+                            </div>
+                            <div class="money-item">
+                                <p><strong>День 4</strong></p>
+                                <p>20 рублей (всего 60)</p>
+                            </div>
+                        </div>
+                        
+                        <p>За 4 дня можно накопить 60 рублей! На них уже можно купить хорошую книгу или маленькую игрушку.</p>
+                    </div>
+                `,
+                exercise: {
+                    question: "Ты хочешь купить конструктор за 100 рублей. Каждый день откладываешь 20 рублей. За сколько дней накопишь?",
+                    options: [
+                        { text: "За 5 дней", correct: true },
+                        { text: "За 2 дня", correct: false },
+                        { text: "За 10 дней", correct: false }
+                    ]
+                }
+            }
+        ];
+
+        // ===== ПЕРЕМЕННЫЕ =====
+        let currentLesson = 1;
+        let completedLessons = JSON.parse(localStorage.getItem('completedLessons')) || [1];
+        let selectedExerciseOption = null;
+
+        // ===== НАВИГАЦИЯ =====
+        function showScreen(screenId) {
+            // Скрыть все экраны
+            const screens = [
+                'home', 'learning', 'lesson', 'certificate', 'cartoons', 'games',
+                'gameIcecream', 'gameWallet', 'gameToy', 'gameStory', 'gameTreasure'
+            ];
+            screens.forEach(screen => {
+                const el = document.getElementById(screen);
+                if (el) el.classList.add('hidden');
+            });
+            
+            // Показать выбранный экран
+            const targetScreen = document.getElementById(screenId);
+            if (targetScreen) {
+                targetScreen.classList.remove('hidden');
+                targetScreen.classList.add('fade-in');
+            }
+            
+            // Обновить активное меню
+            updateActiveMenu(screenId);
+            
+            // Закрыть мобильное меню
+            closeMobileMenu();
+            
+            // Инициализировать экран если нужно
+            if (screenId === 'learning') {
+                initLearningScreen();
+            } else if (screenId === 'lesson') {
+                loadLesson(currentLesson);
+            } else if (screenId === 'certificate') {
+                initCertificate();
+            } else if (screenId === 'gameIcecream') {
+                initIceCreamGame();
+            } else if (screenId === 'gameWallet') {
+                initWalletGame();
+            } else if (screenId === 'gameToy') {
+                initToyGame();
+            } else if (screenId === 'gameStory') {
+                initStoryGame();
+            } else if (screenId === 'gameTreasure') {
+                initTreasureGame();
+            }
+        }
+
+        function updateActiveMenu(screen) {
+            const links = document.querySelectorAll('.main-nav a');
+            links.forEach(link => link.classList.remove('active'));
+            
+            let menuItem = '';
+            if (screen === 'home') menuItem = 'Главная';
+            else if (screen === 'learning' || screen === 'lesson' || screen === 'certificate') menuItem = 'Обучение';
+            else if (screen === 'cartoons') menuItem = 'Мультфильмы';
+            else if (screen === 'games' || screen.startsWith('game')) menuItem = 'Игры';
+            
+            links.forEach(link => {
+                if (link.textContent.includes(menuItem)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // ===== МОБИЛЬНОЕ МЕНЮ =====
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+            this.innerHTML = nav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        function closeMobileMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.remove('active');
+            document.getElementById('menuToggle').innerHTML = '<i class="fas fa-bars"></i>';
+        }
+
+        // ===== ОБУЧЕНИЕ =====
+        function initLearningScreen() {
+            const grid = document.getElementById('lessonsGrid');
+            grid.innerHTML = '';
+            
+            lessons.forEach((lesson, index) => {
+                const isCompleted = completedLessons.includes(lesson.id);
+                const isCurrent = lesson.id === currentLesson;
+                
+                const lessonCard = document.createElement('div');
+                lessonCard.className = 'lesson-card';
+                if (isCompleted) lessonCard.classList.add('completed');
+                if (isCurrent) lessonCard.classList.add('current');
+                
+                lessonCard.innerHTML = `
+                    <div class="lesson-icon">
+                        <i class="fas ${lesson.icon}"></i>
+                    </div>
+                    <div class="lesson-number">Урок ${lesson.id}</div>
+                    <h3>${lesson.title}</h3>
+                    <p>${isCompleted ? '✅ Пройден' : '📝 Изучить'}</p>
+                    <button class="nav-btn" style="margin-top: 15px; padding: 10px 20px;" onclick="openLesson(${lesson.id})">
+                        <i class="fas fa-${isCompleted ? 'redo' : 'play'}"></i>
+                        ${isCompleted ? 'Повторить' : 'Начать'}
+                    </button>
+                `;
+                
+                grid.appendChild(lessonCard);
+            });
+            
+            // Показать кнопку сертификата если все уроки пройдены
+            const certificateBtn = document.getElementById('certificateBtn');
+            certificateBtn.style.display = completedLessons.length === lessons.length ? 'inline-flex' : 'none';
+            
+            // Обновить прогресс
+            document.getElementById('progressText').textContent = 
+                `Пройдено: ${completedLessons.length} из ${lessons.length}`;
+        }
+
+        function openLesson(lessonId) {
+            currentLesson = lessonId;
+            showScreen('lesson');
+        }
+
+        function loadLesson(lessonId) {
+            const lesson = lessons.find(l => l.id === lessonId);
+            if (!lesson) return;
+            
+            // Обновить заголовки
+            document.getElementById('lessonNumber').textContent = lessonId;
+            document.getElementById('lessonTitle').textContent = lesson.title;
+            document.getElementById('lessonProgress').textContent = `${lessonId} из ${lessons.length}`;
+            
+            // Загрузить контент
+            document.getElementById('lessonText').innerHTML = lesson.content;
+            
+            // Загрузить упражнение
+            loadExercise(lesson.exercise);
+            
+            // Обновить кнопки навигации
+            document.getElementById('prevBtn').style.display = lessonId > 1 ? 'inline-flex' : 'none';
+            const nextBtn = document.getElementById('nextBtn');
+            if (lessonId < lessons.length) {
+                nextBtn.style.display = 'inline-flex';
+                nextBtn.textContent = 'Следующий урок';
+            } else {
+                nextBtn.style.display = 'inline-flex';
+                nextBtn.textContent = 'Завершить курс';
+            }
+            
+            // Сбросить выбранный ответ
+            selectedExerciseOption = null;
+            document.getElementById('resultMessage').className = 'result-message';
+        }
+
+        function loadExercise(exercise) {
+            const container = document.getElementById('exerciseContent');
+            container.innerHTML = `
+                <p style="font-size: 1.2rem; margin-bottom: 20px;"><strong>${exercise.question}</strong></p>
+                <div class="options-grid">
+                    ${exercise.options.map((option, index) => `
+                        <button class="option-btn" onclick="selectOption(${index})" id="option${index}">
+                            ${option.text}
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function selectOption(index) {
+            selectedExerciseOption = index;
+            
+            // Снять выделение со всех кнопок
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Выделить выбранную кнопку
+            document.getElementById(`option${index}`).classList.add('selected');
+        }
+
+        function checkExercise() {
+            if (selectedExerciseOption === null) {
+                alert('Сначала выбери ответ!');
+                return;
+            }
+            
+            const lesson = lessons.find(l => l.id === currentLesson);
+            const isCorrect = lesson.exercise.options[selectedExerciseOption].correct;
+            const resultDiv = document.getElementById('resultMessage');
+            
+            if (isCorrect) {
+                resultDiv.textContent = '🎉 Правильно! Молодец! Ты отлично справился!';
+                resultDiv.className = 'result-message success';
+                
+                // Отметить урок как пройденный
+                if (!completedLessons.includes(currentLesson)) {
+                    completedLessons.push(currentLesson);
+                    localStorage.setItem('completedLessons', JSON.stringify(completedLessons));
+                    
+                    // Награда
+                    setTimeout(() => {
+                        if (currentLesson === lessons.length) {
+                            alert('🏆 Ура! Ты прошёл все уроки! Теперь можешь получить сертификат!');
+                        } else {
+                            alert('⭐ Отлично! Урок пройден! Переходи к следующему!');
+                        }
+                    }, 500);
+                }
+            } else {
+                resultDiv.textContent = '😊 Попробуй еще раз! Ты почти у цели!';
+                resultDiv.className = 'result-message error';
+            }
+        }
+
+        function prevLesson() {
+            if (currentLesson > 1) {
+                currentLesson--;
+                loadLesson(currentLesson);
+            }
+        }
+
+        function nextLesson() {
+            if (currentLesson < lessons.length) {
+                currentLesson++;
+                loadLesson(currentLesson);
+            } else if (currentLesson === lessons.length) {
+                // Завершить курс
+                if (completedLessons.length === lessons.length) {
+                    showCertificate();
+                } else {
+                    alert('Сначала пройди все уроки и ответь на вопросы!');
+                }
+            }
+        }
+
+        // ===== СЕРТИФИКАТ =====
+        function showCertificate() {
+            if (completedLessons.length === lessons.length) {
+                showScreen('certificate');
+            } else {
+                alert('Сначала пройди все уроки!');
+            }
+        }
+
+        function initCertificate() {
+            // Установить имя
+            const name = prompt('Введи своё имя для сертификата:', 'Юный Финансист');
+            document.getElementById('studentName').textContent = name || 'Юный Финансист';
+            
+            // Установить дату
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('ru-RU', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+            document.getElementById('certificateDate').textContent = dateStr;
+        }
+
+        function downloadCertificate() {
+            alert('В реальном приложении здесь можно было бы скачать PDF сертификата!\n\nА пока вот твой виртуальный сертификат: 🏆');
+            // Здесь можно добавить генерацию PDF с использованием jsPDF
+        }
+
+        // ===== МУЛЬТФИЛЬМЫ =====
+        function playCartoon(id) {
+            const titles = [
+                'Как Рублик научился копить',
+                'Поход в магазин',
+                'Секрет подарков',
+                'Где живут деньги?',
+                'Приключения Копеечки'
+            ];
+            
+            alert(`🎬 Начинается мультфильм: "${titles[id-1]}"\n\nВ реальном приложении здесь было бы видео!`);
+        }
+
+        // ===== ИГРЫ =====
+        function startGame(gameType) {
+            if (gameType === 'icecream') showScreen('gameIcecream');
+            else if (gameType === 'wallet') showScreen('gameWallet');
+            else if (gameType === 'toy') showScreen('gameToy');
+            else if (gameType === 'story') showScreen('gameStory');
+            else if (gameType === 'treasure') showScreen('gameTreasure');
+        }
+
+        // ===== ИГРА 1: КУПИ МОРОЖЕНОЕ =====
+        let selectedIceCream = null;
+        let selectedIceCreamPrice = 0;
+        let iceCreamCoins = [];
+
+        function initIceCreamGame() {
+            selectedIceCream = null;
+            selectedIceCreamPrice = 0;
+            iceCreamCoins = [];
+            
+            // Сбросить выбор мороженого
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Обновить отображение
+            updateIceCreamDisplay();
+            
+            // Скрыть результат
+            document.getElementById('icecreamResult').className = 'result-message';
+        }
+
+        function selectIceCream(name, price) {
+            selectedIceCream = name;
+            selectedIceCreamPrice = price;
+            iceCreamCoins = [];
+            
+            // Снять выделение со всех вариантов мороженого
+            const iceCreamButtons = document.querySelectorAll('.game-content .option-btn');
+            iceCreamButtons.forEach((btn, index) => {
+                if (index < 3) { // Только первые 3 кнопки - мороженое
+                    btn.classList.remove('selected');
+                }
+            });
+            
+            // Выделить выбранный
+            event.currentTarget.classList.add('selected');
+            
+            // Обновить отображение
+            updateIceCreamDisplay();
+        }
+
+        function selectIceCreamCoin(value) {
+            if (!selectedIceCream) {
+                alert('Сначала выбери мороженое!');
+                return;
+            }
+            
+            const index = iceCreamCoins.indexOf(value);
+            const button = event.currentTarget;
+            
+            if (index === -1) {
+                iceCreamCoins.push(value);
+                button.classList.add('selected');
+            } else {
+                iceCreamCoins.splice(index, 1);
+                button.classList.remove('selected');
+            }
+            
+            updateIceCreamDisplay();
+        }
+
+        function updateIceCreamDisplay() {
+            const total = iceCreamCoins.reduce((sum, value) => sum + value, 0);
+            
+            document.getElementById('selectedIceCreamName').textContent = selectedIceCream || 'Не выбрано';
+            document.getElementById('selectedIceCreamPrice').textContent = selectedIceCreamPrice || '0';
+            document.getElementById('selectedCoinsSum').textContent = total;
+            
+            if (selectedIceCream) {
+                const change = total - selectedIceCreamPrice;
+                document.getElementById('iceCreamChange').textContent = change >= 0 ? change : 'не хватает';
+                document.getElementById('iceCreamChange').style.color = change >= 0 ? 'green' : 'red';
+                document.getElementById('icecreamButton').disabled = false;
+            } else {
+                document.getElementById('iceCreamChange').textContent = '0';
+                document.getElementById('iceCreamChange').style.color = 'inherit';
+                document.getElementById('icecreamButton').disabled = true;
+            }
+        }
+
+        function buyIceCream() {
+            if (!selectedIceCream) return;
+            
+            const total = iceCreamCoins.reduce((sum, value) => sum + value, 0);
+            const resultDiv = document.getElementById('icecreamResult');
+            
+            if (total < selectedIceCreamPrice) {
+                const need = selectedIceCreamPrice - total;
+                resultDiv.textContent = `Ой! Не хватает ${need} рублей. Добавь ещё монет!`;
+                resultDiv.className = 'result-message error';
+            } else if (total === selectedIceCreamPrice) {
+                resultDiv.textContent = `Идеально! Ты дал ровно ${total} рублей за ${selectedIceCream} мороженое! 🍦🎉`;
+                resultDiv.className = 'result-message success';
+            } else {
+                const change = total - selectedIceCreamPrice;
+                resultDiv.textContent = `Отлично! Ты купил ${selectedIceCream} мороженое за ${selectedIceCreamPrice} рублей и получил ${change} рублей сдачи! 🍦💰`;
+                resultDiv.className = 'result-message success';
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+
+        // ===== ИГРА 2: СОБЕРИ КОШЕЛЁК =====
+        let walletTarget = 50;
+        let walletCoins = [];
+
+        function initWalletGame() {
+            walletTarget = Math.floor(Math.random() * 30) + 30; // 30-60 рублей
+            walletCoins = [];
+            
+            // Создать доступные монеты
+            const coinsContainer = document.getElementById('availableCoins');
+            coinsContainer.innerHTML = '';
+            
+            const coins = [1, 2, 5, 10, 10, 5, 2, 1]; // Разные монеты
+            coins.forEach((value, index) => {
+                const coin = document.createElement('div');
+                coin.className = 'option-btn';
+                coin.textContent = value + ' рублей';
+                coin.dataset.value = value;
+                coin.dataset.id = index;
+                coin.draggable = true;
+                
+                coin.addEventListener('dragstart', function(e) {
+                    e.dataTransfer.setData('text/plain', JSON.stringify({
+                        value: value,
+                        id: index
+                    }));
+                });
+                
+                coinsContainer.appendChild(coin);
+            });
+            
+            // Настроить зону кошелька
+            const walletArea = document.getElementById('walletArea');
+            walletArea.innerHTML = '<p style="color: #666;">Перетащи монеты сюда</p>';
+            
+            walletArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.style.backgroundColor = '#BBDEFB';
+            });
+            
+            walletArea.addEventListener('dragleave', function() {
+                this.style.backgroundColor = '#E3F2FD';
+            });
+            
+            walletArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.style.backgroundColor = '#E3F2FD';
+                try {
+                    const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+                    if (data && data.value) {
+                        addCoinToWallet(data.value, data.id);
+                    }
+                } catch (error) {
+                    console.log('Ошибка при перетаскивании');
+                }
+            });
+            
+            // Обновить отображение
+            document.getElementById('walletTarget').textContent = walletTarget;
+            updateWalletDisplay();
+            
+            // Скрыть результат
+            document.getElementById('walletResult').className = 'result-message';
+        }
+
+        function addCoinToWallet(value, coinId) {
+            // Проверить, не добавлена ли уже эта монета
+            if (walletCoins.some(coin => coin.id === coinId)) {
+                alert('Эта монета уже в кошельке!');
+                return;
+            }
+            
+            walletCoins.push({ value: value, id: coinId });
+            
+            // Обновить отображение
+            const walletArea = document.getElementById('walletArea');
+            const coinElement = document.createElement('div');
+            coinElement.className = 'option-btn';
+            coinElement.style.cursor = 'default';
+            coinElement.textContent = value + ' рублей';
+            walletArea.appendChild(coinElement);
+            
+            // Если это первая монета, убрать текст-подсказку
+            if (walletCoins.length === 1) {
+                const hint = walletArea.querySelector('p');
+                if (hint) hint.remove();
+            }
+            
+            updateWalletDisplay();
+        }
+
+        function updateWalletDisplay() {
+            const total = walletCoins.reduce((sum, coin) => sum + coin.value, 0);
+            const remaining = walletTarget - total;
+            
+            document.getElementById('walletTotal').textContent = total;
+            document.getElementById('walletRemaining').textContent = remaining;
+            document.getElementById('walletButton').disabled = walletCoins.length === 0;
+            
+            if (remaining < 0) {
+                document.getElementById('walletRemaining').style.color = 'red';
+            } else {
+                document.getElementById('walletRemaining').style.color = 'inherit';
+            }
+        }
+
+        function checkWallet() {
+            const total = walletCoins.reduce((sum, coin) => sum + coin.value, 0);
+            const resultDiv = document.getElementById('walletResult');
+            
+            if (total === walletTarget) {
+                resultDiv.textContent = `Потрясающе! Ты собрал ровно ${walletTarget} рублей! Идеально! 🎉`;
+                resultDiv.className = 'result-message success';
+            } else if (total < walletTarget) {
+                const need = walletTarget - total;
+                resultDiv.textContent = `Почти получилось! Ты собрал ${total} рублей. Добавь ещё ${need} рублей! 😊`;
+                resultDiv.className = 'result-message error';
+            } else {
+                const extra = total - walletTarget;
+                resultDiv.textContent = `Слишком много! Ты собрал ${total} рублей, а нужно ${walletTarget}. Убери ${extra} рублей! 🤔`;
+                resultDiv.className = 'result-message error';
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+
+        // ===== ИГРА 3: ВЫБЕРИ ИГРУШКУ =====
+        let toyBudget = 100;
+        let selectedToyItem = null;
+
+        function initToyGame() {
+            toyBudget = 100;
+            selectedToyItem = null;
+            
+            // Создать игрушки
+            const toysGrid = document.getElementById('toysGrid');
+            toysGrid.innerHTML = '';
+            
+            const toys = [
+                { name: 'Машинка', price: 50, icon: '🚗' },
+                { name: 'Кукла', price: 80, icon: '👸' },
+                { name: 'Конструктор', price: 120, icon: '🧩' },
+                { name: 'Мяч', price: 40, icon: '⚽' },
+                { name: 'Пазл', price: 60, icon: '🧩' },
+                { name: 'Робот', price: 150, icon: '🤖' }
+            ];
+            
+            toys.forEach(toy => {
+                const toyCard = document.createElement('div');
+                toyCard.className = 'option-btn';
+                if (toy.price > toyBudget) {
+                    toyCard.style.opacity = '0.5';
+                    toyCard.style.cursor = 'not-allowed';
+                } else {
+                    toyCard.onclick = function() {
+                        selectToy(toy.name, toy.price);
+                    };
+                }
+                
+                toyCard.innerHTML = `
+                    <div style="font-size: 2rem; margin-bottom: 10px;">${toy.icon}</div>
+                    <strong>${toy.name}</strong><br>
+                    ${toy.price} рублей
+                `;
+                
+                toysGrid.appendChild(toyCard);
+            });
+            
+            // Обновить отображение
+            updateToyDisplay();
+            
+            // Скрыть результат
+            document.getElementById('toyResult').className = 'result-message';
+        }
+
+        function selectToy(name, price) {
+            selectedToyItem = { name, price };
+            
+            // Снять выделение со всех игрушек
+            document.querySelectorAll('#toysGrid .option-btn').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Выделить выбранную игрушку
+            event.currentTarget.classList.add('selected');
+            
+            // Обновить отображение
+            updateToyDisplay();
+        }
+
+        function updateToyDisplay() {
+            if (selectedToyItem) {
+                document.getElementById('selectedToyName').textContent = selectedToyItem.name;
+                document.getElementById('selectedToyPrice').textContent = selectedToyItem.price;
+                const remaining = toyBudget - selectedToyItem.price;
+                document.getElementById('toyRemainingBudget').textContent = remaining;
+                document.getElementById('toyButton').disabled = false;
+            } else {
+                document.getElementById('selectedToyName').textContent = 'Не выбрана';
+                document.getElementById('selectedToyPrice').textContent = '0';
+                document.getElementById('toyRemainingBudget').textContent = toyBudget;
+                document.getElementById('toyButton').disabled = true;
+            }
+        }
+
+        function buyToy() {
+            if (!selectedToyItem) return;
+            
+            const remaining = toyBudget - selectedToyItem.price;
+            const resultDiv = document.getElementById('toyResult');
+            
+            resultDiv.textContent = `Поздравляю! Ты купил ${selectedToyItem.name} за ${selectedToyItem.price} рублей.`;
+            
+            if (remaining === 0) {
+                resultDiv.textContent += ' Ты потратил все деньги идеально! 🎯';
+            } else if (remaining < 30) {
+                resultDiv.textContent += ` У тебя осталось ${remaining} рублей - можно купить что-нибудь маленькое! 👍`;
+            } else {
+                resultDiv.textContent += ` У тебя осталось ${remaining} рублей - хорошая экономия! 💰`;
+            }
+            
+            resultDiv.className = 'result-message success';
+            resultDiv.style.display = 'block';
+        }
+
+        // ===== ИГРА 4: ИСТОРИЯ ПРО ПЕТЮ =====
+        let storyAnswers = {};
+
+        function initStoryGame() {
+            storyAnswers = {};
+            
+            // Создать вопросы
+            const questionsContainer = document.getElementById('storyQuestions');
+            questionsContainer.innerHTML = '';
+            
+            const questions = [
+                {
+                    id: 1,
+                    question: 'Сколько лет было Пете?',
+                    options: ['3 года', '5 лет', '7 лет'],
+                    correct: 1
+                },
+                {
+                    id: 2,
+                    question: 'Кто подарил Пете первый рубль?',
+                    options: ['Мама', 'Папа', 'Бабушка'],
+                    correct: 2
+                },
+                {
+                    id: 3,
+                    question: 'Сколько стоило мороженое?',
+                    options: ['1 рубль', '10 рублей', '50 рублей'],
+                    correct: 2
+                },
+                {
+                    id: 4,
+                    question: 'Что Петя решил купить на свой рубль?',
+                    options: ['Мороженое', 'Машинку', 'Наклейку'],
+                    correct: 2
+                }
+            ];
+            
+            questions.forEach(q => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'story-question';
+                questionDiv.style.background = 'white';
+                questionDiv.style.borderRadius = '15px';
+                questionDiv.style.padding = '20px';
+                questionDiv.style.margin = '20px 0';
+                questionDiv.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+                
+                questionDiv.innerHTML = `
+                    <h4 style="color: var(--primary-dark); margin-bottom: 15px;">${q.id}. ${q.question}</h4>
+                    <div class="answer-options">
+                        ${q.options.map((option, index) => `
+                            <button class="answer-option" onclick="selectStoryAnswer(${q.id}, ${index})" 
+                                    id="story${q.id}_${index}">
+                                ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                `;
+                questionsContainer.appendChild(questionDiv);
+            });
+            
+            // Скрыть результат
+            document.getElementById('storyResult').className = 'result-message';
+        }
+
+        function selectStoryAnswer(questionId, answerIndex) {
+            storyAnswers[questionId] = answerIndex;
+            
+            // Снять выделение с других ответов на этот вопрос
+            for (let i = 0; i < 3; i++) {
+                const btn = document.getElementById(`story${questionId}_${i}`);
+                if (btn) btn.classList.remove('selected');
+            }
+            
+            // Выделить выбранный ответ
+            const selectedBtn = document.getElementById(`story${questionId}_${answerIndex}`);
+            if (selectedBtn) selectedBtn.classList.add('selected');
+        }
+
+        function checkStory() {
+            const correctAnswers = [1, 2, 2, 2]; // Индексы правильных ответов
+            let correctCount = 0;
+            
+            for (let i = 1; i <= 4; i++) {
+                if (storyAnswers[i] === correctAnswers[i-1]) {
+                    correctCount++;
+                }
+            }
+            
+            const resultDiv = document.getElementById('storyResult');
+            
+            if (correctCount === 4) {
+                resultDiv.textContent = 'Потрясающе! Ты ответил правильно на все вопросы! Петя гордится тобой! 🏆';
+                resultDiv.className = 'result-message success';
+            } else if (correctCount >= 2) {
+                resultDiv.textContent = `Хорошо! Ты ответил правильно на ${correctCount} из 4 вопросов. Петя доволен! 👍`;
+                resultDiv.className = 'result-message success';
+            } else {
+                resultDiv.textContent = `Попробуй еще раз! Ты ответил правильно на ${correctCount} из 4 вопросов. Перечитай историю внимательнее! 🤔`;
+                resultDiv.className = 'result-message error';
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+
+        // ===== ИГРА 5: НАЙДИ КЛАД =====
+        let treasureCells = [];
+        let foundTreasures = 0;
+        let treasureSum = 0;
+        let attempts = 0;
+        const totalTreasures = 5;
+
+        function initTreasureGame() {
+            treasureCells = [];
+            foundTreasures = 0;
+            treasureSum = 0;
+            attempts = 0;
+            
+            // Создать карту 5x5
+            const mapGrid = document.getElementById('treasureMap');
+            mapGrid.innerHTML = '';
+            
+            // Создать массив с 5 сокровищами
+            const treasures = [];
+            while (treasures.length < totalTreasures) {
+                const randomIndex = Math.floor(Math.random() * 25);
+                if (!treasures.includes(randomIndex)) {
+                    treasures.push(randomIndex);
+                }
+            }
+            
+            // Значения сокровищ
+            const treasureValues = [1, 2, 5, 10, 20];
+            
+            // Создать клетки
+            for (let i = 0; i < 25; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'map-cell';
+                cell.style.aspectRatio = '1';
+                cell.style.background = '#A1887F';
+                cell.style.borderRadius = '10px';
+                cell.style.display = 'flex';
+                cell.style.alignItems = 'center';
+                cell.style.justifyContent = 'center';
+                cell.style.cursor = 'pointer';
+                cell.style.transition = 'all 0.3s';
+                cell.style.fontSize = '1.5rem';
+                cell.style.color = 'white';
+                cell.textContent = '❓';
+                
+                if (treasures.includes(i)) {
+                    const treasureIndex = treasures.indexOf(i);
+                    cell.dataset.treasure = true;
+                    cell.dataset.value = treasureValues[treasureIndex];
+                } else {
+                    cell.dataset.treasure = false;
+                }
+                
+                cell.onclick = function() {
+                    if (this.classList.contains('found')) return;
+                    
+                    attempts++;
+                    if (this.dataset.treasure === 'true') {
+                        const value = parseInt(this.dataset.value);
+                        this.textContent = value + '₽';
+                        this.classList.add('found');
+                        foundTreasures++;
+                        treasureSum += value;
+                        
+                        // Анимация
+                        this.style.transform = 'scale(1.2)';
+                        this.style.backgroundColor = '#FFD54F';
+                        setTimeout(() => {
+                            this.style.transform = 'scale(1)';
+                        }, 300);
+                    } else {
+                        this.textContent = '✗';
+                        this.style.backgroundColor = '#BCAAA4';
+                    }
+                    
+                    updateTreasureDisplay();
+                    
+                    // Проверить, все ли сокровища найдены
+                    if (foundTreasures === totalTreasures) {
+                        setTimeout(() => {
+                            finishTreasure();
+                        }, 500);
+                    }
+                };
+                
+                mapGrid.appendChild(cell);
+            }
+            
+            // Обновить отображение
+            document.getElementById('totalTreasures').textContent = totalTreasures;
+            updateTreasureDisplay();
+            
+            // Скрыть результат
+            document.getElementById('treasureResult').className = 'result-message';
+            document.getElementById('treasureButton').disabled = true;
+        }
+
+        function updateTreasureDisplay() {
+            document.getElementById('treasureFound').textContent = foundTreasures;
+            document.getElementById('treasureSum').textContent = treasureSum;
+            document.getElementById('treasureAttempts').textContent = attempts;
+            
+            // Активировать кнопку после 5 попыток
+            if (attempts >= 5) {
+                document.getElementById('treasureButton').disabled = false;
+            }
+        }
+
+        function finishTreasure() {
+            const resultDiv = document.getElementById('treasureResult');
+            
+            if (foundTreasures === totalTreasures) {
+                resultDiv.textContent = `Потрясающе! Ты нашёл все ${totalTreasures} сокровищ на сумму ${treasureSum} рублей! Настоящий кладоискатель! 🏆`;
+                resultDiv.className = 'result-message success';
+            } else {
+                resultDiv.textContent = `Хорошая попытка! Ты нашёл ${foundTreasures} из ${totalTreasures} сокровищ на сумму ${treasureSum} рублей. Попробуй найти все в следующий раз! 😊`;
+                resultDiv.className = 'result-message success';
+            }
+            
+            resultDiv.style.display = 'block';
+            document.getElementById('treasureButton').disabled = true;
+        }
+
+        // ===== ИНИЦИАЛИЗАЦИЯ =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Закрытие меню при клике на ссылку
+            document.querySelectorAll('.main-nav a').forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+            
+            // Инициализировать экран обучения
+            initLearningScreen();
+        });
+    </script>
+</body>
+</html>
